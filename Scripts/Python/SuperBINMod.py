@@ -1,15 +1,16 @@
 import struct
 import sys
 
-# Paths for editing
-MODIFIED_INPUT_FILE = input('Modified input file:')
-SIGNED_OUTPUT_FILE = input('Signed output directory:')
+# Paths for editing - simplifed
+input_path = input('Modified input file: ')
+MODIFIED_INPUT_FILE = input_path
+SIGNED_OUTPUT_FILE = input_path
 
 with open(MODIFIED_INPUT_FILE, "rb") as f:
     data = f.read()
 
 if len(data) < 12:
-    print("Error: File is too small.")
+    print("Error: File is too small. Need 12 bytes at least!")
     sys.exit()
 
 # Strip the old 12-byte footer to isolate the raw body bytes
@@ -17,15 +18,15 @@ body = data[:-12]
 
 print("Calculating Generalplus 32-bit Additive Sum over modified body...")
 
-# Calculate the additive sum across the modified data blocks
+# calculate the additive sum across the modified data blocks
 additive_sum = 0
 for i in range(0, len(body), 4):
     chunk = body[i:i+4]
-    # Handle any hanging bytes at the end of the alignment boundary
+    # handle any hanging bytes at the end of the alignment boundary
     if len(chunk) == 4:
         additive_sum = (additive_sum + struct.unpack("<I", chunk)[0]) & 0xFFFFFFFF
     else:
-        # Pad trailing partial chunks with zeros to maintain 32-bit width
+        # pad trailing partial chunks with zeros to maintain 32-bit width
         padded_chunk = chunk + b'\x00' * (4 - len(chunk))
         additive_sum = (additive_sum + struct.unpack("<I", padded_chunk)[0]) & 0xFFFFFFFF
 
