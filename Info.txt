@@ -1,0 +1,12 @@
+I have a lot of information to share about these strangely locked down devices.
+
+The Testing Menu
+
+  This menu does a lot of strange things with strange or proprietary terms that vTech uses.
+  I have made some strange things such as the reserve data files with the debug option "APP DATA BR", which allowed me to make and backup small files. I have no idea what these files are, but they could be save files of some sort.
+
+Firmware extracting
+
+  The firmware could be extracted with some methods, however I do not have the full firmware for the Dx4, only the APP_DATA.BIN, which I'm sure it is not the entire dump. The APP_DATA.BIN is just too big for the browser import, so you will have to wait to obtain these files.
+    One of the methods is taking the APP_DATA.BIN from the Learning Lodge software in Windows, or taking it from the device when it is updating.
+    The other is more complicated and needs leaked Windows software. So far, I have gotten nothing from the device with said software, as it simply returns an empty, large, .BIN file, except for reading the RAM, which is interesting. The RAM dump exists in this repository for your inspection.
